@@ -1,17 +1,17 @@
 #### Download apps :
-- anduoinx
-- termux
-- realvnc
+- Anduoinx
+- Termux
+- RVNC Viewer
 #### Install linux:
-1. Open androin 
-2. go to linux distribution
-3. select debian
-4. select cli only
-5. open termux
-6. copy command from androin 
-7. run command in termux
-8. go throug installation
-!! Now you have instaled linux.
+1. Open Androinx 
+2. Go to "Linux Distribution"
+3. Select "Debian"
+4. Select "CLI Only"
+5. Open Termux
+6. Copy "Recopy Command" from Androinx 
+7. Paste and run command in Termux
+8. Go through installation
+!! Now you have installed linux.
 #### Type to exit ubuntu:
 ```
 exit
@@ -22,29 +22,29 @@ exit
 ```
 
 #### Install LXDE:
-1. 
+1. update debian apt
 ```bash
 sudo apt update
 ```
-2. Install desktop enviroment lxde
+2. Install desktop environment LXDE
 ```bash
 sudo apt install lxde task-lxde-desktop -y
 ```
 3. Choose keyboard layout (I choose English)
-#### Creat new user:
+#### Create new user:
 1. Create user
 ```bash
 useradd -m user_name -s /bin/bash
 ```
-2.  Add user into sudoers file with same privilages as root
+2.  Add user into sudoers file with same privileges as root
 ```bash
 sudo nano /etc/sudoers
 ```
-2. This insert into sudoers file
+3. This insert into sudoers file
 ```
 user_name   ALL=(ALL:ALL) ALL
 ```
-3. Switch to newly created user
+4. Switch to newly created user
 ```bash
 su - user_name
 ```
@@ -53,7 +53,7 @@ su - user_name
 ```bash
 sudo apt install tightvncserver
 ```
-2. enter vnc password (it will be used when connecting by realvnc)
+2. Enter vnc password (it will be used when connecting by RVNC)
 ```
 vncserver
 ```
@@ -61,21 +61,25 @@ vncserver
 ```
 vncserver -kill :1
 ```
-4. backup
+4. Backup xstartup file
 ```bash
 mv ~/.vnc/xstartup ~/.vnc/xstartup.bak
 ```
-5. `apt install nano`  if you do not have nano
+4. Open file in some editor (if you don't have any install nano editor)
+```bash
+apt install nano
+```
+5. Open xstartup file
 ```bash
 nano ~/.vnc/xstartup
 ```
-6. Insert into file and save
+6. Insert into xstartup file and save it (Ctr+x ... y)
 ```bash
 #!/bin /bash
 xrdb $HOME/.Xresources
 exec startlxde &
 ```
-6. My looks like this ...
+7. My xstartup file looks like this
 ```bash
 #!/bin/sh
 xrdb $HOME/.Xresources
@@ -85,9 +89,9 @@ xsetroot -solid grey
 # Fix to make GNOME work
 export XKL_XMODMAP_DISABLE=1
 /etc/X11/Xsession
-exec startlxde & # this is the line I added into File all other lines were already there
+exec startlxde & # this is the line I added into file all other lines were already there
 ```
-7. Rerun the vncserver
+8. Rerun the vncserver
 ```
 vncserver -localhost
 ```
@@ -101,26 +105,26 @@ vncserver -localhost
 !! You should be now in.
 
 Error:
-1. process completed signal 9 error (could happend afetr some time when vnc server running)
-- enter into developer mode and allow usb debuging (on android)
-- connect device into computer
-- install android debuging bridge (android developer SDK platform tools)
-- extract download folder 
-- add path to extracted folder into enviroment variable
-- open command prompt
-- to check if device is connected successfully (you should see device number with it's status)
+1. Process completed signal 9 error (could happened after some time when vnc server running)
+- Enter into developer mode and allow usb debugging (on android)
+- Connect device into computer
+- Install android debugging bridge (android developer SDK platform tools)
+- Extract download folder 
+- Add path to extracted folder into environment variable
+- Open command prompt
+- To check if device is connected successfully (you should see device number with it's status)
 ```
 adb devices
 ```
-- to enter device shell
+- To enter device shell
 ```
 adb shell
 ```
-- on android 12L, 13 enter ... I used this and it works pretty well
+- On android 12L, 13 enter ... I used this and it works pretty well
 ```
 settings put global settings_enable_monitor_phantom_procs false
 ```
-- on android 12 enter
+- On android 12 enter
 ```
 /system/bin/device_config set_sync_disabled_for_tests persistent; /system/bin/device_config put activity_manager max_phantom_processes 2147483647
 ```
